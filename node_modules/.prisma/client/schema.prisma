@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:postgres@localhost:5434/template1?schema=public"
+}
+
+
+model User {
+  id          Int          @id @default(autoincrement())
+  email       String       @default("")
+  username    String       @unique
+  password    String       // Hashed password
+  fullName    String       @default("")
+  avatar      Json         @db.JsonB @default("{}")
+  bio         String       @default("")
+  admin       Boolean      @default(false)
+  blocked     Boolean      @default(false)
+  createdAt   DateTime     @default(now())
+  datasets    Dataset[]
+  submissions Submission[]
+}
+
+
+model Competition {
+  id          Int          @id @default(autoincrement())
+  slug        String       @unique
+  title       String
+  description String       @default("")
+  coverImage  Json         @db.JsonB @default("{}")
+  prize       String       @default("")
+  deadline    DateTime
+  featured    Boolean      @default(false)
+  createdAt   DateTime     @default(now())
+  datasetId   Int          @unique
+  dataset     Dataset      @relation(fields: [datasetId], references: [id])
+  submissions Submission[]
+}
+
+model Dataset {
+  id           Int           @id @default(autoincrement())
+  title        String
+  description  String        @default("")
+  fileUrl      String
+  fileSize     Int           @default(0)
+  tags         String        @default("")
+  published    Boolean       @default(false)
+  createdAt    DateTime      @default(now())
+  uploaderId   Int
+  uploader     User          @relation(fields: [uploaderId], references: [id])
+  competition  Competition?
+}
+
+model Submission {
+  id             Int          @id @default(autoincrement())
+  score          Float        @default(0)
+  fileUrl        String
+  createdAt      DateTime     @default(now())
+  userId         Int
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  competitionId  Int
+  competition    Competition  @relation(fields: [competitionId], references: [id], onDelete: Cascade)
+  @@index([competitionId, score(sort: Desc)])
+}
+
+model Visitor {
+  id    Int    @id @default(autoincrement())
+  date  String
+  ip    String
+}
