@@ -19,17 +19,17 @@ const resetpassval = joi.object ({
     password : joi.string()
     .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
 })
+
 const signupVal = joi.object ({
-    full_name : joi.string()
+    fullName : joi.string()
+    .required(),
+    email : joi.string()
     .required(),
     password : joi.string()
     .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
-    repeat_password : joi.ref("password"),
     phone : joi.string()
     .pattern(RegExp("^(?:([0-9]{1})*[- .(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4})+$")),
-    refreshToken : [joi.string(),
-    joi.number()],
-    Blocked : joi.boolean(),
+    bio : joi.string()
 })
 const updateVal = joi.object({
     full_name: joi.string(),

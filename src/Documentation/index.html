@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Auth API Docs</title>
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css" />
+</head>
+<body>
+  <div id="swagger-ui"></div>
+
+  <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+  <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js"></script>
+  <script>
+    window.onload = function() {
+      const spec = {
+        openapi: "3.0.0",
+        info: {
+          title: "Authentication API",
+          description: "Simple authentication service with phone verification, register, and login endpoints.",
+          version: "1.0.0"
+        },
+        servers: [
+          {
+            url: "http://localhost:3000/api/V1/auth",
+            description: "Local development server"
+          }
+        ],
+        paths: {
+          "/verify": {
+            post: {
+              summary: "Verify phone code",
+              description: "Verifies the phone number using the received code.",
+              requestBody: {
+                required: true,
+                content: {
+                  "application/json": {
+                    schema: {
+                      type: "object",
+                      properties: {
+                        code: { type: "integer", example: 56220 },
+                        phone: { type: "string", example: "09185326583" }
+                      },
+                      required: ["code", "phone"]
+                    }
+                  }
+                }
+              },
+              responses: {
+                "200": {
+                  description: "Phone has been verified",
+                  content: {
+                    "text/html": {
+                      schema: { type: "string", example: "phone has been verified" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/register": {
+            post: {
+              summary: "Register new user",
+              description: "Creates a new user with the given information.",
+              requestBody: {
+                required: true,
+                content: {
+                  "application/json": {
+                    schema: {
+                      type: "object",
+                      properties: {
+                        fullName: { type: "string", example: "Ali Ahmadi" },
+                        email: { type: "string", example: "ali.ahmadi@example.com" },
+                        password: { type: "string", example: "Password123" },
+                        phone: { type: "string", example: "09185326583" },
+                        bio: { type: "string", example: "I am a data scientist based in Tehran, interested in ML competitions." }
+                      },
+                      required: ["fullName", "email", "password", "phone"]
+                    }
+                  }
+                }
+              },
+              responses: {
+                "200": {
+                  description: "Register successful",
+                  content: {
+                    "text/html": {
+                      schema: { type: "string", example: "register successful" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/login": {
+            post: {
+              summary: "Login user",
+              description: "Logs in a user using phone and password, returning access and refresh tokens.",
+              requestBody: {
+                required: true,
+                content: {
+                  "application/json": {
+                    schema: {
+                      type: "object",
+                      properties: {
+                        password: { type: "string", example: "Password123" },
+                        phone: { type: "string", example: "09181711690" }
+                      },
+                      required: ["password", "phone"]
+                    }
+                  }
+                }
+              },
+              responses: {
+                "200": {
+                  description: "Login successful",
+                  content: {
+                    "application/json": {
+                      schema: {
+                        type: "object",
+                        properties: {
+                          refreshToken: { type: "string", example: "eyJhbGciOiJIUzI1NiIs..." },
+                          AccessToken: { type: "string", example: "eyJhbGciOiJIUzI1NiIs..." },
+                          phone: { type: "string", example: "09181711690" },
+                          role: { type: "boolean", example: false }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      };
+
+      const ui = SwaggerUIBundle({
+        spec: spec,
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+        layout: "BaseLayout"
+      });
+
+      window.ui = ui;
+    };
+  </script>
+</body>
+</html>

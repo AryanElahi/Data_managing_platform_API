@@ -11,7 +11,7 @@ datasource db {
 model User {
   id          Int          @id @default(autoincrement())
   email       String       @default("")
-  username    String       @unique
+  phone       String       @unique
   password    String       // Hashed password
   fullName    String       @default("")
   avatar      Json         @db.JsonB @default("{}")

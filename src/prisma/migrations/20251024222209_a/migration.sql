@@ -2,7 +2,7 @@
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL DEFAULT '',
-    "username" TEXT NOT NULL,
+    "phone" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "fullName" TEXT NOT NULL DEFAULT '',
     "avatar" JSONB NOT NULL DEFAULT '{}',
@@ -67,7 +67,7 @@ CREATE TABLE "Visitor" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+CREATE UNIQUE INDEX "User_phone_key" ON "User"("phone");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Competition_slug_key" ON "Competition"("slug");

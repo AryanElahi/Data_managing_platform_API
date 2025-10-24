@@ -1,0 +1,5 @@
+[Fri Oct 24 23:28:23 2025]	[error]	Error: socket hang up
+[Fri Oct 24 23:29:12 2025]	[Token]	{"TokenKey":"Si9vV255dVpkWW9qMFJiUmc3dmpadWY5b3FVckEraXc3eit5SUc1MUgzWDNrN0tvZXhEZzVuNDBLUUFHU3BZUU9VRlo0NXBhYkFkV0Y2d1M3OHVveXVuTjE3R2ZVNFcwMHQ4SGZpTzIzUVVEcHhLM1ovVlhnb3dobFltdEVKTWV6bThSemVHNWZEa3BFbGNucGtuU1dMZHFBVDl3SnJlbDh6ZkROWFVGMzFaVHdHRjluWGN5WGVtMUlVM2hPS2wz","IsSuccessful":true,"Message":" درخواست Token با موفقیت انجام شد"}
+[Fri Oct 24 23:29:12 2025]	[VerificationCode]	{"VerificationCodeId":793347497,"IsSuccessful":true,"Message":"your verification code is sent"}
+[Fri Oct 24 23:33:19 2025]	[Token]	{"TokenKey":"Si9vV255dVpkWW9qMFJiUmc3dmpadWY5b3FVckEraXc3eit5SUc1MUgzWDNrN0tvZXhEZzVuNDBLUUFHU3BZUU9VRlo0NXBhYkFkV0Y2d1M3OHVveXVuTjE3R2ZVNFcwMHQ4SGZpTzIzUVVEcHhLM1ovVlhnb3dobFltdEVKTWVWY2NOalh4UUtJdWpMTWlWdXRZblNlZGNwOGk2dUhiNlpkZ2VwcFlyUzNoRW9iMnpvaUllWFhIRzkzNVpZOE1o","IsSuccessful":true,"Message":" درخواست Token با موفقیت انجام شد"}
+[Fri Oct 24 23:33:19 2025]	[VerificationCode]	{"VerificationCodeId":793347576,"IsSuccessful":true,"Message":"your verification code is sent"}
