@@ -23,20 +23,34 @@ model User {
   submissions Submission[]
 }
 
+model label {
+  id    Int    @id @unique @default(autoincrement())
+  name  String
+  LableOnCompetition LableOnCompetition[]
+}
+
+model LableOnCompetition {
+  id Int @unique @default(autoincrement())
+  compId Int
+  comp Competition @relation(fields: [compId], references: [id])
+  labelId Int
+  label label @relation(fields: [labelId], references: [id])
+
+}
 
 model Competition {
-  id          Int          @id @default(autoincrement())
-  slug        String       @unique
+  id          Int          @id @unique @default(autoincrement())
   title       String
   description String       @default("")
-  coverImage  Json         @db.JsonB @default("{}")
   prize       String       @default("")
   deadline    DateTime
-  featured    Boolean      @default(false)
+  level       String    @default("")
+  status    Boolean      @default(false)
   createdAt   DateTime     @default(now())
   datasetId   Int          @unique
   dataset     Dataset      @relation(fields: [datasetId], references: [id])
   submissions Submission[]
+  labels LableOnCompetition[]
 }
 
 model Dataset {
