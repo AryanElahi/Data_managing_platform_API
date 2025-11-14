@@ -28,7 +28,7 @@ const expressLoader = async (app) => {
     app.use(notFoundHandler);
     app.use(errorHandler);
 
-    app.listen(3000, () => {
+    app.listen(2001, () => {
         console.log(`Server is running on port 3000`);
     });
 };
