@@ -12,7 +12,7 @@ updateCompetition,
 deleteCompetition,
 // photo_adding,
 // search 
-} = require("../../../../services/anouncement/CRUD")
+} = require("../../../../services/competition/CRUD")
 const {getUserByAccessToken} = require ("../../../../services/user/auth")
 const {verifyAccessToken} = require("../../../middlewares/isAuth.middleware")
 const {
